@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Consulta de Produtos</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f2;
+            padding: 30px;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            width: 350px;
+            box-shadow: 0 0 8px rgba(0,0,0,0.1);
+        }
+        .campo {
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: block;
+        }
+        select {
+            width: 100%;
+            padding: 6px;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px;
+            width: 100%;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Consulta de Produtos</h1>
+
+<form action="/consultar" method="POST">
+
+    <!-- BITOLA -->
+    <div class="campo">
+        <label for="Bitola">Bitola</label>
+        <select name="Bitola" id="Bitola">
+            <option value="">(qualquer)</option>
+            <option value="1.0">1,0 mm²</option>
+            <option value="1.5">1,5 mm²</option>
+            <option value="2.5">2,5 mm²</option>
+            <option value="4.0">4,0 mm²</option>
+            <option value="6.0">6,0 mm²</option>
+            <option value="10.0">10 mm²</option>
+            <option value="16.0">16 mm²</option>
+            <option value="25.0">25 mm²</option>
+            <option value="35.0">35 mm²</option>
+            <option value="50.0">50 mm²</option>
+            <option value="70.0">70 mm²</option>
+            <option value="95.0">95 mm²</option>
+            <option value="120.0">120 mm²</option>
+            <option value="150.0">150 mm²</option>
+            <option value="185.0">185 mm²</option>
+            <option value="240.0">240 mm²</option>
+            <option value="300.0">300 mm²</option>
+        </select>
+    </div>
+
+    <!-- ISOLAÇÃO -->
+    <div class="campo">
+        <label for="Isolacao">Isolação</label>
+        <select name="Isolacao" id="Isolacao">
+            <option value="">(qualquer)</option>
+            <option value="PVC">PVC</option>
+            <option value="XLPE">XLPE</option>
+            <option value="EPR">EPR</option>
+        </select>
+    </div>
+
+    <!-- TENSÃO -->
+    <div class="campo">
+        <label for="Tensao">Tensão</label>
+        <select name="Tensao" id="Tensao">
+            <option value="">(qualquer)</option>
+            <option value="750">450/750V</option>
+            <option value="1">0,6/1kV</option>
+        </select>
+    </div>
+
+    <!-- COR -->
+    <div class="campo">
+        <label for="Cor">Cor</label>
+        <select name="Cor_Isolacao" id="Cor_Isolacao">
+            <option value="">(qualquer)</option>
+            <option value="Preta">Preta</option>
+            <option value="Azul">Azul</option>
+            <option value="Vermelha">Vermelha</option>
+            <option value="Verde">Verde</option>
+            <option value="Amarela">Amarela</option>
+        </select>
+    </div>
+
+    <!-- FABRICANTE -->
+    <div class="campo">
+        <label for="Fabricante">Fabricante</label>
+        <select name="Fabricante_Fantasia" id="Fabricante_Fantasia">
+            <option value="">(qualquer)</option>
+            <option value="PHELPS DODGE">PHELPS DODGE</option>
+            <option value="PRYSMIAN">PRYSMIAN</option>
+            <option value="COBRECOM">COBRECOM</option>
+            <option value="FICAP">FICAP</option>
+            <!-- Se tiver outros fabricantes, adicione aqui -->
+        </select>
+    </div>
+
+    <button type="submit">Consultar</button>
+
+</form>
+
+</body>
+</html>

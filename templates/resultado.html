@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados</title>
+    <style>
+        .item {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 350px;
+            background: #f9f9f9;
+        }
+        .campo {
+            font-weight: bold;
+            color: #333;
+        }
+        .linha {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Resultados da Consulta</h2>
+
+{% if resultados %}
+    {% for item in resultados %}
+        <div class="item">
+            {% for campo, valor in item.items() %}
+                <div class="linha">
+                    <span class="campo">{{ campo }}:</span> {{ valor }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Nenhum resultado encontrado.</p>
+{% endif %}
+
+</body>
+</html>
