@@ -2,18 +2,8 @@ import telebot
 import pg8000
 import os
 
-TOKEN = "8833233090:AAFtpLC7dzhljwdU3z-Dn2q8KJm9oubdDko"
+TOKEN = os.getenv("TELEGRAM_TOKEN")
 bot = telebot.TeleBot(TOKEN)
-
-def conectar():
-    return pg8000.connect(
-        host="localhost",
-        user="postgres",
-        password="Jorgea1980@",
-        database="produtosdb",
-        port=5433
-    )
-TOKEN = os.getenv("TOKEN")
 
 def conectar():
     return pg8000.connect(
@@ -23,6 +13,7 @@ def conectar():
         database=os.getenv("DB_NAME"),
         port=int(os.getenv("DB_PORT"))
     )
+
 def preparar(valor):
     valor = valor.lower()
     valor = valor.replace(".", "").replace(",", "").replace(" ", "").replace("-", "")
