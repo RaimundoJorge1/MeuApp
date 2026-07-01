@@ -1,3 +1,4 @@
-pyTelegramBotAPI
-pg8000
-Flask
+Flask==3.0.0
+pyTelegramBotAPI==4.14.0
+pg8000==1.30.2
+gunicorn==21.2.0
