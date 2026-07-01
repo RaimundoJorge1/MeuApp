@@ -1,10 +1,18 @@
+import os
+import threading
+from flask import Flask
 import telebot
 import pg8000
-import os
 
+# ============================
+# TOKEN DO TELEGRAM VIA RENDER
+# ============================
 TOKEN = os.getenv("TELEGRAM_TOKEN")
 bot = telebot.TeleBot(TOKEN)
 
+# ============================
+# CONEXÃO COM O BANCO
+# ============================
 def conectar():
     return pg8000.connect(
         host=os.getenv("DB_HOST"),
@@ -14,11 +22,17 @@ def conectar():
         port=int(os.getenv("DB_PORT"))
     )
 
+# ============================
+# FUNÇÃO DE PREPARAR TEXTO
+# ============================
 def preparar(valor):
     valor = valor.lower()
     valor = valor.replace(".", "").replace(",", "").replace(" ", "").replace("-", "")
     return f"%{valor}%"
 
+# ============================
+# COMANDO /start
+# ============================
 @bot.message_handler(commands=['start'])
 def start(msg):
     bot.reply_to(msg,
@@ -27,6 +41,9 @@ def start(msg):
         "Exemplo:\n1.5;PVC;750;Preta;PHELPS DODGE"
     )
 
+# ============================
+# RECEBER MENSAGENS
+# ============================
 @bot.message_handler(func=lambda m: True)
 def receber(msg):
     texto = msg.text.split(";")
@@ -74,4 +91,24 @@ def receber(msg):
 
     bot.reply_to(msg, resposta)
 
-bot.infinity_polling()
+# ============================
+# FLASK PARA MANTER O RENDER ATIVO
+# ============================
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Bot rodando no Render!"
+
+# ============================
+# THREAD PARA RODAR O BOT
+# ============================
+def iniciar_bot():
+    bot.infinity_polling()
+
+# ============================
+# INICIAR FLASK + BOT
+# ============================
+if __name__ == "__main__":
+    threading.Thread(target=iniciar_bot).start()
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)))
